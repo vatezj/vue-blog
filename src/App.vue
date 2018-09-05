@@ -1,65 +1,256 @@
 <template>
+
   <div id="app">
-   <mu-container class="container is-stripe">
-  <!-- header -->
-  <Title></Title>
-  <!-- content -->
-  <mu-row>
-    <mu-col span="3">
-     <Left></Left>
-    </mu-col>
-    <mu-col span="9">
-     <router-view></router-view>
-    </mu-col>
-</mu-row>
-  <!-- footer -->
-<Copyright></Copyright>
-   
-</mu-container>
+
+    <!-- <div class="site-nav-toggle" id="site-nav-toggle"> -->
+  
+      <div class="mobile-menu" v-show="show">
+        <circle-menu type="left" :number='4' mask='black' btn circle animate="animated jello">
+          <router-link to="/" slot="item_1">主页</router-link>
+          <router-link to="/tags" slot="item_2">标签</router-link>
+          <router-link to="/archive" slot="item_3">存档</router-link>
+          <router-link to="/about" slot="item_4">关于</router-link>
+        </circle-menu>
+
+      </div>
+
+
+    <!-- </div> -->
+
+    <div class="index-about">
+      <i> sometimes code， sometimes design </i>
+    </div>
+
+    <div class="index-container">
+
+      <div class="index-left">
+
+        <div class="nav" id="nav">
+          <div class="avatar-name">
+            <div class="avatar">
+              <img src="http://ontzi4vtc.bkt.clouddn.com/logo.png" />
+            </div>
+            <div class="name">
+              <i>vate hu</i>
+            </div>
+          </div>
+          <div class="contents" id="nav-content">
+            <ul>
+
+              <li :class="routeActive=='index'?'active':''">
+                <router-link to="/">
+                  <i class="iconfont icon-shouye1"></i>
+                  <span>主页</span>
+                </router-link>
+              </li>
+              <li :class="routeActive=='tags'?'active':''">
+                <router-link to="/tags">
+                  <i class="iconfont icon-biaoqian1"></i>
+                  <span>标签</span>
+                </router-link>
+              </li>
+              <li :class="routeActive=='archive'?'active':''">
+                <router-link to="/archive">
+                  <i class="iconfont icon-guidang2"></i>
+                  <span>存档</span>
+                </router-link>
+              </li>
+              <li :class="routeActive=='about'?'active':''">
+                <router-link to="/about">
+                  <i class="iconfont icon-guanyu2"></i>
+                  <span>关于</span>
+                </router-link>
+              </li>
+
+              <!-- <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li> -->
+
+            </ul>
+          </div>
+
+        </div>
+
+        <div class="search-field" id="search-field">
+          <div class="search-container">
+            <div class="search-input">
+              <span id="esc-search">
+                <i class="icon-fanhui iconfont"></i>
+              </span>
+              <input id="search-input" />
+              <span id="begin-search">搜索</span>
+            </div>
+            <div class="search-result-container" id="search-result-container">
+            </div>
+          </div>
+        </div>
+        <div class="index-about-mobile">
+          <i> sometimes code， sometimes design </i>
+        </div>
+      </div>
+      <router-view></router-view>
+    </div>
+    <footer class="footer">
+      <ul class="list-inline text-center">
+        <li>
+          <a target="_blank" href="https://twitter.com/iconie_alloy">
+            <span class="fa-stack fa-lg">
+              <i class="iconfont icon-twitter"></i>
+            </span>
+          </a>
+        </li>
+        <li>
+          <a target="_blank" href="https://www.zhihu.com/people/ai-er-lan-xue-da">
+            <span class="fa-stack fa-lg">
+              <i class="iconfont icon-zhihu"></i>
+            </span>
+          </a>
+        </li>
+        <li>
+          <a target="_blank" href="http://weibo.com/3286578617">
+            <span class="fa-stack fa-lg">
+              <i class="iconfont icon-weibo"></i>
+            </span>
+          </a>
+        </li>
+        <li>
+          <a target="_blank" href="https://www.facebook.com/xiaotao.nie.5">
+            <span class="fa-stack fa-lg">
+              <i class="iconfont icon-facebook"></i>
+            </span>
+          </a>
+        </li>
+        <li>
+          <a target="_blank" href="https://github.com/AirCloud">
+            <span class="fa-stack fa-lg">
+              <i class="iconfont icon-github"></i>
+            </span>
+          </a>
+        </li>
+        <li>
+          <a target="_blank" href="https://www.linkedin.com/in/小涛-聂-80964aba">
+            <span class="fa-stack fa-lg">
+              <i class="iconfont icon-linkedin"></i>
+            </span>
+          </a>
+        </li>
+
+      </ul>
+      <p>
+        Created By
+        <a href="https://vue.io/">vue</a>
+      </p>
+    </footer>
   </div>
 </template>
 
 <script>
-import Title from '@/components/title.vue'
-import Copyright from '@/components/copyright.vue'
-import Left from '@/components/left.vue'
+import animate from 'animate.css'
+import CircleMenu from 'vue-circle-menu'
+import draggable from 'vuedraggable'
+
 export default {
   components: {
-    Copyright,
-    Title,
-    Left
+    CircleMenu,
+    draggable
   },
-  name: 'App'
+  name: 'App',
+  data() {
+    return {
+      tags: '',
+      show: true,
+      routeActive: '/',
+      val: '125',
+      drag_style: {
+        width: '100px',
+        height: '100px',
+        background: 'aqua',
+        position: 'absolute',
+        right: '30px',
+        top: 0
+      },
+      nav: [
+        {
+          name: '/',
+          active: true,
+          icon: 'icon-shouye1'
+        },
+        {
+          name: '/tags',
+          active: false,
+          icon: 'icon-biaoqian1'
+        },
+        {
+          name: '/archive',
+          active: false,
+          icon: 'icon-guidang2'
+        },
+        {
+          name: '/about',
+          active: false,
+          icon: 'icon-guanyu2'
+        }
+      ]
+    }
+  },
+  created: function() {
+    this.routeActive = this.$route.name
+    console.log(this.$route.name)
+    if (this.$route.name == 'page') {
+      this.routeActive = 'index'
+    }
+  },
+  updated: function() {
+    // console.log(this.$route.path)
+    this.routeActive = this.$route.name
+    if (this.$route.name == 'page') {
+      this.routeActive = 'index'
+    }
+  },
+  methods: {
+    allow(evt) {
+      console.log(evt.draggedContext.index)
+      console.log(evt.draggedContext.element)
+      console.log(evt.draggedContext.futureIndex)
+      console.log(evt.relatedContext.index)
+      console.log(evt.relatedContext.element)
+      console.log(evt.relatedContext.list)
+      console.log(evt.relatedContext.component)
+      return evt.draggedContext.element.name !== 'b'
+    },
+    start(evt) {
+      console.log('start')
+      console.log(evt)
+      this.show = false
+    },
+
+    getdata(evt) {
+      console.log('move')
+      console.log(evt)
+    },
+    datadragEnd(evt) {
+      console.log(evt)
+    },
+    end(evt) {
+      this.show = true
+      console.log(evt.from)
+    }
+  }
 }
 </script>
 
-<style lang="less">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  /* -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center; */
-  color: #2c3e50;
-  margin-top: 50px;
+<style>
+@import './assets/css/aircloud.css'; /*引入公共样式*/
+@import './assets/css/gitment.css'; /*引入公共样式*/
+.oy-menu-group {
+  position: relative;
+  float: left;
+  transition: 0.2s;
 }
-.container {
-  .row {
-    // margin-bottom: 20px;
-    &:last-child {
-      margin-bottom: 0;
-    }
-  }
-  .grid-cell {
-    // border-radius: 4px;
-    height: 36px;
-    // background: rgba(167, 161, 161, 0.8);
-  }
-}
-.container.is-stripe {
-  // margin-top: 25px;
-  background: rgba(255, 255, 255, 1);
-}
-.container.is-stripe .col:nth-child(2n) .grid-cell {
-  background: rgba(0, 0, 0, 0.54);
+.btn-list a {
+  color: #fff;
 }
 </style>

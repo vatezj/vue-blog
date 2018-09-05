@@ -165,10 +165,14 @@
     </div>
     <ul class="pager">
 
+      <li class="previous">
+        <router-link to="/page/1">&larr; Newer Posts</router-link>
+      </li>
       <li class="next">
-         <router-link to="/page/1">Older Posts &rarr;</router-link>
+        <router-link to="/page/1">Older Posts &rarr;</router-link>
       </li>
 
+      
     </ul>
 
   </div>
