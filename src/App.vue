@@ -5,11 +5,11 @@
     <!-- <div class="site-nav-toggle" id="site-nav-toggle"> -->
   
       <div class="mobile-menu" v-show="show">
-        <circle-menu type="left" :number='4' mask='black' btn circle animate="animated jello">
-          <router-link to="/" slot="item_1">主页</router-link>
-          <router-link to="/tags" slot="item_2">标签</router-link>
-          <router-link to="/archive" slot="item_3">存档</router-link>
-          <router-link to="/about" slot="item_4">关于</router-link>
+        <circle-menu type="left" :number='4'  btn circle animate="animated rubberBand" :colors="[ 'rgb(220,220,220)', '#DCDCDC', '#DCDCDC', '#DCDCDC', '#DCDCDC']">
+          <router-link to="/" slot="item_1" class="iconfont icon-shouye1"></router-link>
+          <router-link to="/tags" slot="item_2" class="iconfont icon-biaoqian1"></router-link>
+          <router-link to="/archive" slot="item_3" class="iconfont icon-guidang2"></router-link>
+          <router-link to="/about" slot="item_4" class="iconfont icon-guanyu2"></router-link>
         </circle-menu>
 
       </div>
@@ -18,7 +18,7 @@
     <!-- </div> -->
 
     <div class="index-about">
-      <i> sometimes code， sometimes design </i>
+      <i> sometimes code， sometimes play </i>
     </div>
 
     <div class="index-container">
@@ -37,7 +37,7 @@
           <div class="contents" id="nav-content">
             <ul>
 
-              <li :class="routeActive=='index'?'active':''">
+              <li :class="routeActive=='index' || routeActive=='page'?'active':''">
                 <router-link to="/">
                   <i class="iconfont icon-shouye1"></i>
                   <span>主页</span>
@@ -88,7 +88,7 @@
           </div>
         </div>
         <div class="index-about-mobile">
-          <i> sometimes code， sometimes design </i>
+          <i> sometimes code， sometimes play</i>
         </div>
       </div>
       <router-view></router-view>
@@ -141,7 +141,7 @@
       </ul>
       <p>
         Created By
-        <a href="https://vue.io/">vue</a>
+        <a href="https://www.vate.ren/">vate</a>
       </p>
     </footer>
   </div>
@@ -172,72 +172,26 @@ export default {
         right: '30px',
         top: 0
       },
-      nav: [
-        {
-          name: '/',
-          active: true,
-          icon: 'icon-shouye1'
-        },
-        {
-          name: '/tags',
-          active: false,
-          icon: 'icon-biaoqian1'
-        },
-        {
-          name: '/archive',
-          active: false,
-          icon: 'icon-guidang2'
-        },
-        {
-          name: '/about',
-          active: false,
-          icon: 'icon-guanyu2'
-        }
-      ]
+    
     }
   },
   created: function() {
     this.routeActive = this.$route.name
+    console.log('created')
     console.log(this.$route.name)
     if (this.$route.name == 'page') {
       this.routeActive = 'index'
     }
   },
   updated: function() {
-    // console.log(this.$route.path)
+    // console.log(this.$route.name)
     this.routeActive = this.$route.name
-    if (this.$route.name == 'page') {
-      this.routeActive = 'index'
-    }
+    // if (this.$route.name == 'page') {
+    //   this.routeActive = 'index'
+    // }
   },
   methods: {
-    allow(evt) {
-      console.log(evt.draggedContext.index)
-      console.log(evt.draggedContext.element)
-      console.log(evt.draggedContext.futureIndex)
-      console.log(evt.relatedContext.index)
-      console.log(evt.relatedContext.element)
-      console.log(evt.relatedContext.list)
-      console.log(evt.relatedContext.component)
-      return evt.draggedContext.element.name !== 'b'
-    },
-    start(evt) {
-      console.log('start')
-      console.log(evt)
-      this.show = false
-    },
-
-    getdata(evt) {
-      console.log('move')
-      console.log(evt)
-    },
-    datadragEnd(evt) {
-      console.log(evt)
-    },
-    end(evt) {
-      this.show = true
-      console.log(evt.from)
-    }
+    
   }
 }
 </script>
@@ -245,6 +199,7 @@ export default {
 <style>
 @import './assets/css/aircloud.css'; /*引入公共样式*/
 @import './assets/css/gitment.css'; /*引入公共样式*/
+@import './assets/css/icon.css'; /*引入公共样式*/
 .oy-menu-group {
   position: relative;
   float: left;

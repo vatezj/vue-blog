@@ -24,7 +24,7 @@
                 <span class="attr">访问：
                     <span id="busuanzi_value_page_pv"></span>
                 </span>
-                </span>
+             
             </div>
             <div class="post-content ">
                 <p>raven.js 是 sentry 为 JavaScript 错误上报提供的 JS-SDK，本篇我们基于其源代码对其原理进行分析，本篇文章只分析前端部分，对应的文件目录是

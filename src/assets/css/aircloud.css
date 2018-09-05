@@ -10,6 +10,9 @@ html {
 body {
   margin-left: calc(100vw - 100%) !important;
 }
+a{
+  text-decoration: none;
+}
 .red {
   color: red;
 }
