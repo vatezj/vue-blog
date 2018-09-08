@@ -1,9 +1,7 @@
 <template>
 
   <div id="app">
-
     <!-- <div class="site-nav-toggle" id="site-nav-toggle"> -->
-  
       <div class="mobile-menu" v-show="show">
         <circle-menu type="left" :number='4'  btn circle animate="animated rubberBand" :colors="[ 'rgb(220,220,220)', '#DCDCDC', '#DCDCDC', '#DCDCDC', '#DCDCDC']">
           <router-link to="/" slot="item_1" class="iconfont icon-shouye1"></router-link>
@@ -11,10 +9,7 @@
           <router-link to="/archive" slot="item_3" class="iconfont icon-guidang2"></router-link>
           <router-link to="/about" slot="item_4" class="iconfont icon-guanyu2"></router-link>
         </circle-menu>
-
       </div>
-
-
     <!-- </div> -->
 
     <div class="index-about">

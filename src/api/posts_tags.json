@@ -1,0 +1,23 @@
+{
+    "code":"000",
+    "tags":[
+        {
+            "tag_name":"centOS"
+        },
+        {
+            "tag_name":"redis"
+        },
+        {
+            "tag_name":"linux"
+        },
+        {
+            "tag_name":"vue"
+        },
+        {
+            "tag_name":"php"
+        },
+        {
+            "tag_name":"mysql"
+        }
+    ]
+}

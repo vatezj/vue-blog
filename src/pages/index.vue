@@ -1,4 +1,7 @@
 <template>
+
+
+
   <div class="index-middle">
     <!-- Main Content -->
 
@@ -166,7 +169,7 @@
     <ul class="pager">
 
       <li class="next">
-         <router-link to="/page/1">Older Posts &rarr;</router-link>
+        <router-link to="/page/1">Older Posts &rarr;</router-link>
       </li>
 
     </ul>
@@ -175,9 +178,12 @@
 </template>
 
 <script>
+import vueLoading from 'vue-loading-template'
 export default {
   name: 'index',
-
+  components: {
+    vueLoading
+  },
   data() {
     return {
       msg: 'Welcome to Your Vue.js App'
