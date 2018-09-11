@@ -3,7 +3,7 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-
+require('./mock.js')
 
 Vue.config.productionTip = false
 Vue.directive('drag',//自定义指令                                      JS
@@ -35,6 +35,10 @@ Vue.directive('drag',//自定义指令                                      JS
     }
   }
 );
+Vue.filter('getYMD', function(input) {
+  return input.split(' ')[0];
+})
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

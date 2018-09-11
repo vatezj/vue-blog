@@ -27,6 +27,11 @@ export default new Router({
       component: tags
     },
     {
+      path: '/tags/:name',
+      name: 'tags',
+      component: tags
+    },
+    {
       path: '/archive',
       name: 'archive',
       component: archive

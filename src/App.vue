@@ -137,6 +137,7 @@
       <p>
         Created By
         <a href="https://www.vate.ren/">vate</a>
+        <a href="http://www.miitbeian.gov.cn" target="_blank">粤ICP备16067937号-2</a>
       </p>
     </footer>
   </div>
@@ -172,7 +173,7 @@ export default {
   },
   created: function() {
     this.routeActive = this.$route.name
-    console.log('created')
+    // console.log('created')
     console.log(this.$route.name)
     if (this.$route.name == 'page') {
       this.routeActive = 'index'

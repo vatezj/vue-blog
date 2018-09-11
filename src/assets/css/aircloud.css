@@ -527,6 +527,18 @@ a{
 .tags a::before {
   content: "#";
 }
+
+.tags span {
+  text-decoration: none;
+  color: #999999;
+  margin-right: 15px;
+}
+.tags span:hover {
+  color: #4a4a4a;
+}
+.tags span::before {
+  content: "#";
+}
 .one-tag-list {
   margin-bottom: 25px;
 }
