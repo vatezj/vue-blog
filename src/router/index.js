@@ -14,37 +14,58 @@ export default new Router({
     {
       path: '/',
       name: 'index',
-      component: index
+      component: index,
+      meta: {
+        keepAlive: true // 需要被缓存
+      }
     },
     {
       path: '/page/:id',
       name: 'page',
-      component: page
+      component: page,
+      meta: {
+        keepAlive: true // 需要被缓存
+      }
     },
     {
       path: '/tags',
       name: 'tags',
-      component: tags
+      component: tags,
+      meta: {
+        keepAlive: true // 需要被缓存
+      }
     },
     {
       path: '/tags/:name',
       name: 'tags',
-      component: tags
+      component: tags,
+      meta: {
+        keepAlive: true // 需要被缓存
+      }
     },
     {
       path: '/archive',
       name: 'archive',
-      component: archive
+      component: archive,
+      meta: {
+        keepAlive: true // 需要被缓存
+      }
     },
     {
       path: '/detail/:name',
       name: 'detail',
-      component: detail
+      component: detail,
+      meta: {
+        keepAlive: true // 需要被缓存
+      }
     },
     {
       path: '/about',
       name: 'about',
-      component: about
+      component: about,
+      meta: {
+        keepAlive: true // 需要被缓存
+      }
     }
   ]
 })

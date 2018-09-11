@@ -2,14 +2,14 @@
 
   <div id="app">
     <!-- <div class="site-nav-toggle" id="site-nav-toggle"> -->
-      <div class="mobile-menu" v-show="show">
-        <circle-menu type="left" :number='4'  btn circle animate="animated rubberBand" :colors="[ 'rgb(220,220,220)', '#DCDCDC', '#DCDCDC', '#DCDCDC', '#DCDCDC']">
-          <router-link to="/" slot="item_1" class="iconfont icon-shouye1"></router-link>
-          <router-link to="/tags" slot="item_2" class="iconfont icon-biaoqian1"></router-link>
-          <router-link to="/archive" slot="item_3" class="iconfont icon-guidang2"></router-link>
-          <router-link to="/about" slot="item_4" class="iconfont icon-guanyu2"></router-link>
-        </circle-menu>
-      </div>
+    <div class="mobile-menu" v-show="show">
+      <circle-menu type="left" :number='4' btn circle animate="animated rubberBand" :colors="[ 'rgb(220,220,220)', '#DCDCDC', '#DCDCDC', '#DCDCDC', '#DCDCDC']">
+        <router-link to="/" slot="item_1" class="iconfont icon-shouye1"></router-link>
+        <router-link to="/tags" slot="item_2" class="iconfont icon-biaoqian1"></router-link>
+        <router-link to="/archive" slot="item_3" class="iconfont icon-guidang2"></router-link>
+        <router-link to="/about" slot="item_4" class="iconfont icon-guanyu2"></router-link>
+      </circle-menu>
+    </div>
     <!-- </div> -->
 
     <div class="index-about">
@@ -86,52 +86,56 @@
           <i> sometimes code， sometimes play</i>
         </div>
       </div>
-      <router-view></router-view>
+      <keep-alive>
+        <router-view v-if="$route.meta.keepAlive" style="min-height:100%"></router-view>
+      </keep-alive>
+      <router-view v-if="!$route.meta.keepAlive" style="min-height:100%"></router-view>
+      <!-- <router-view></router-view> -->
     </div>
     <footer class="footer">
       <ul class="list-inline text-center">
-        <li>
+        <!-- <li>
           <a target="_blank" href="https://twitter.com/iconie_alloy">
             <span class="fa-stack fa-lg">
               <i class="iconfont icon-twitter"></i>
             </span>
           </a>
-        </li>
-        <li>
+        </li> -->
+        <!-- <li>
           <a target="_blank" href="https://www.zhihu.com/people/ai-er-lan-xue-da">
             <span class="fa-stack fa-lg">
               <i class="iconfont icon-zhihu"></i>
             </span>
           </a>
-        </li>
+        </li> -->
         <li>
-          <a target="_blank" href="http://weibo.com/3286578617">
+          <a target="_blank" href="https://weibo.com/5979985307">
             <span class="fa-stack fa-lg">
               <i class="iconfont icon-weibo"></i>
             </span>
           </a>
         </li>
-        <li>
+        <!-- <li>
           <a target="_blank" href="https://www.facebook.com/xiaotao.nie.5">
             <span class="fa-stack fa-lg">
               <i class="iconfont icon-facebook"></i>
             </span>
           </a>
-        </li>
+        </li> -->
         <li>
-          <a target="_blank" href="https://github.com/AirCloud">
+          <a target="_blank" href="https://github.com/vatezj">
             <span class="fa-stack fa-lg">
               <i class="iconfont icon-github"></i>
             </span>
           </a>
         </li>
-        <li>
+        <!-- <li>
           <a target="_blank" href="https://www.linkedin.com/in/小涛-聂-80964aba">
             <span class="fa-stack fa-lg">
               <i class="iconfont icon-linkedin"></i>
             </span>
           </a>
-        </li>
+        </li> -->
 
       </ul>
       <p>
@@ -167,8 +171,7 @@ export default {
         position: 'absolute',
         right: '30px',
         top: 0
-      },
-    
+      }
     }
   },
   created: function() {
@@ -186,9 +189,7 @@ export default {
     //   this.routeActive = 'index'
     // }
   },
-  methods: {
-    
-  }
+  methods: {}
 }
 </script>
 
