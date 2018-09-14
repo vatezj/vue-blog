@@ -161,47 +161,92 @@ export const asyncRouterMap = [
   // nestedRouter,
   // tableRouter,
 
+  // {
+  //   path: '/example',
+  //   component: Layout,
+  //   redirect: '/example/list',
+  //   name: 'Example',
+  //   meta: {
+  //     title: 'example',
+  //     icon: 'example'
+  //   },
+  //   children: [
+  //     {
+  //       path: 'create',
+  //       component: () => import('@/views/example/create'),
+  //       name: 'CreateArticle',
+  //       meta: { title: 'createArticle', icon: 'edit' }
+  //     },
+  //     {
+  //       path: 'edit/:id(\\d+)',
+  //       component: () => import('@/views/example/edit'),
+  //       name: 'EditArticle',
+  //       meta: { title: 'editArticle', noCache: true },
+  //       hidden: true
+  //     },
+  //     {
+  //       path: 'list',
+  //       component: () => import('@/views/example/list'),
+  //       name: 'ArticleList',
+  //       meta: { title: 'articleList', icon: 'list' }
+  //     }
+  //   ]
+  // },
+
   {
-    path: '/example',
+    path: '/posts',
     component: Layout,
-    redirect: '/example/list',
-    name: 'Example',
+    redirect: '/posts/list',
+    name: 'Posts',
     meta: {
-      title: 'example',
-      icon: 'example'
+      title: 'posts',
+      icon: 'form'
     },
     children: [
       {
         path: 'create',
-        component: () => import('@/views/example/create'),
+        component: () => import('@/views/posts/create'),
         name: 'CreateArticle',
         meta: { title: 'createArticle', icon: 'edit' }
       },
       {
         path: 'edit/:id(\\d+)',
-        component: () => import('@/views/example/edit'),
+        component: () => import('@/views/posts/edit'),
         name: 'EditArticle',
         meta: { title: 'editArticle', noCache: true },
         hidden: true
       },
       {
         path: 'list',
-        component: () => import('@/views/example/list'),
+        component: () => import('@/views/posts/list'),
         name: 'ArticleList',
         meta: { title: 'articleList', icon: 'list' }
       }
     ]
   },
 
+  // {
+  //   path: '/tab',
+  //   component: Layout,
+  //   children: [
+  //     {
+  //       path: 'index',
+  //       component: () => import('@/views/tab/index'),
+  //       name: 'Tab',
+  //       meta: { title: 'tab', icon: 'tab' }
+  //     }
+  //   ]
+  // },
+
   {
-    path: '/tab',
+    path: '/label',
     component: Layout,
     children: [
       {
         path: 'index',
-        component: () => import('@/views/tab/index'),
-        name: 'Tab',
-        meta: { title: 'tab', icon: 'tab' }
+        component: () => import('@/views/label/index'),
+        name: 'Label',
+        meta: { title: 'label', icon: 'label' }
       }
     ]
   },
