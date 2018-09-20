@@ -41,7 +41,7 @@ export default {
   },
   methods: {
     setNewsApi: function() {
-      api.get('http://localhost/api/tags').then(res => {
+      api.get('api/tags').then(res => {
         if (res.tags) {
           this.tags = res.tags
           this.tag = res.tags[0].name
@@ -51,7 +51,7 @@ export default {
       })
     },
     getPostsByTag: function(id) {
-      api.get('http://localhost/api/posts/tag/' + id).then(res => {
+      api.get('api/posts/tag/' + id).then(res => {
         if (res.result) {
           this.post_preview_lists = res.result
         } else {

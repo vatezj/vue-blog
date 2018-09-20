@@ -54,7 +54,7 @@ export default {
   },
   methods: {
     detail: function() {
-      api.get('http://localhost/api/posts/detail/'+this.$route.params.name, '').then(res => {
+      api.get('api/posts/detail/'+this.$route.params.name, '').then(res => {
         console.log(res)
         if (res.result) {
             this.post = res.result

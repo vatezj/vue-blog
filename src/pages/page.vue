@@ -62,7 +62,7 @@ export default {
   },
   methods: {
     setNewsApi: function() {
-      api.get('/post/lists', 'type=top&key=123456').then(res => {
+      api.get('api/posts/home', 'page=2').then(res => {
         this.postLists = res.post_preview_lists
       })
     }
