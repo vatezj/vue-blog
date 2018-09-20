@@ -7,6 +7,8 @@ use Swoft\Db\Bean\Annotation\Entity;
 use Swoft\Db\Bean\Annotation\Id;
 use Swoft\Db\Bean\Annotation\Required;
 use Swoft\Db\Bean\Annotation\Table;
+use Swoft\Db\Query;
+use Swoft\Db\QueryBuilder;
 use Swoft\Db\Types;
 
 /**
@@ -373,5 +375,40 @@ class Posts extends Model
     {
         return $this->deletedAt;
     }
+
+
+    public function getPostsLists($page,$num)
+    {
+        $result = Query::table(Posts::class)
+            ->andWhere('status',1)
+            ->orderBy('id', QueryBuilder::ORDER_BY_DESC)
+            ->limit($num,$page*$num)
+            ->get(['title'=> 'title','published_at'=>'published_at','id'=>'id'])
+            ->getResult();
+        if($result)
+        {
+            foreach ($result as $k=>$v)
+            {
+                $tags = Query::table(PostTag::class,'p')
+                        ->leftJoin(Tags::class,'t.id=p.tag_id','t')
+                        ->andWhere('p.post_id',$v['id'])
+                        ->get(['t.name'=>'name','t.id'=>'id'])->getResult();
+                $result[$k]['tags'] = $tags;
+            }
+        }
+        echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++";
+        var_dump($result);
+        return $result;
+    }
+
+
+    public function getPost($where)
+    {
+        $result = Posts::findOne($where)->getResult();
+        echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++";
+        var_dump($result);
+        return $result;
+    }
+
 
 }
