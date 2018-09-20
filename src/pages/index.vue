@@ -8,16 +8,18 @@
       <div class="post-preview" v-for="post in postLists">
         <div class="post-time">{{post.post_time}}</div>
         <div class="post-info">
-           <router-link :to="'/detail/'+post.post_info">
+          <router-link :to="'/detail/'+post.title">
             <h3>
-              {{post.post_info}}
+              {{post.title}}
             </h3>
           </router-link>
           <p>
 
             <span>/</span>
             <span v-for="tag in post.tags">
-              <a class="tag" href="/tags/#javascript" title="tag.tag_name">{{tag.tag_name}}</a>
+              <router-link :to="'/tags/'+tag.name">
+                  <a class="tag" href="javascript::void(0)" title="tag.tag_name">{{tag.name}}</a>
+               </router-link>
               <span>/</span>
             </span>
 
@@ -59,8 +61,15 @@ export default {
   },
   methods: {
     setNewsApi: function() {
-      api.get('/post/lists', 'type=top&key=123456').then(res => {
-        this.postLists = res.post_preview_lists
+      api.get('http://localhost/api/posts/home', 'page=0').then(res => {
+        console.log(res)
+        if (res.result) {
+          if (res.result.length > 0) {
+            this.postLists = res.result
+          }
+        } else {
+        }
+        // this.postLists = res.post_preview_lists
       })
     }
   }

@@ -54,10 +54,7 @@ export default new Router({
     {
       path: '/detail/:name',
       name: 'detail',
-      component: detail,
-      meta: {
-        keepAlive: true // 需要被缓存
-      }
+      component: detail
     },
     {
       path: '/about',

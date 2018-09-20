@@ -2,7 +2,7 @@
   <div class="index-middle">
     <!-- Main Content -->
     <div id='tag_cloud' class="tags">
-      <span v-for="tag in tags" :title="tag.tag_name" rel="3">{{tag.tag_name}}</span>
+      <span v-for="tag in tags" :title="tag.name" rel="3" @click="changeTag(tag.name,tag.id)" :data-name="tag.name" :data-id="tag.id">{{tag.name}}</span>
     </div>
 
     <!-- 标签列表 -->
@@ -11,9 +11,9 @@
         <span class="tag-text">{{tag}}</span>
       </span>
       <div class="post-preview" v-for="post in post_preview_lists">
-        <router-link :to="'/detail/'+post.post_info">
+        <router-link :to="'/detail/'+post.title">
           <h2 class="post-title">
-            {{post.post_info}}
+            {{post.title}}
           </h2>
         </router-link>
         <p class="post-meta"></p>
@@ -30,7 +30,7 @@ export default {
 
   data() {
     return {
-      tags: [],
+      tags: {},
       msg: 'Welcome to Your Vue.js App',
       post_preview_lists: [],
       tag: ''
@@ -41,11 +41,27 @@ export default {
   },
   methods: {
     setNewsApi: function() {
-      api.get('/tags/lists', 'type=top&key=123456').then(res => {
-        this.tags = res.tags
-        this.tag = res.posts.tag
-        this.post_preview_lists = res.posts.post_preview_lists
+      api.get('http://localhost/api/tags').then(res => {
+        if (res.tags) {
+          this.tags = res.tags
+          this.tag = res.tags[0].name
+          this.getPostsByTag(res.tags[0].id)
+        } else {
+        }
       })
+    },
+    getPostsByTag: function(id) {
+      api.get('http://localhost/api/posts/tag/' + id).then(res => {
+        if (res.result) {
+          this.post_preview_lists = res.result
+        } else {
+        }
+      })
+    },
+    changeTag(name,id)
+    {
+      this.tag = name
+      this.getPostsByTag(id)
     }
   }
 }

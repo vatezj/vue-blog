@@ -13,46 +13,46 @@ axios.interceptors.request.use(function (config) {
 // 响应拦截器
 axios.interceptors.response.use((response) => {
   const data = response.data
-
+  return data
   // 根据返回的code值来做不同的处理（和后端约定）
-  switch (data.code) {
-    case '000':
-      // 举例
-      // exp: 修复iPhone 6+ 微信点击返回出现页面空白的问题
-      // if (isIOS()) {
-      //   // 异步以保证数据已渲染到页面上
-      //   setTimeout(() => {
-      //     // 通过滚动强制浏览器进行页面重绘
-      //     document.body.scrollTop += 1
-      //   }, 0)
-      // }
-      // 这一步保证数据返回，如果没有return则会走接下来的代码，不是未登录就是报错
-      console.log(data)
-      return data
+  // switch (data.code) {
+  //   case '000':
+  //     // 举例
+  //     // exp: 修复iPhone 6+ 微信点击返回出现页面空白的问题
+  //     // if (isIOS()) {
+  //     //   // 异步以保证数据已渲染到页面上
+  //     //   setTimeout(() => {
+  //     //     // 通过滚动强制浏览器进行页面重绘
+  //     //     document.body.scrollTop += 1
+  //     //   }, 0)
+  //     // }
+  //     // 这一步保证数据返回，如果没有return则会走接下来的代码，不是未登录就是报错
+  //     console.log(data)
+  //     return data
     
 
-    // 需要重新登录
-    case 'SHIRO_E5001':
-      // 微信生产环境下授权登录
-      if (isWeChat() && IS_PRODUCTION) {
-        axios.get(apis.common.wechat.authorizeUrl).then(({ result }) => {
-          location.replace(global.decodeURIComponent(result))
-        })
-      } else {
-        // 否则跳转到h5登录并带上跳转路由
-        const search = encodeSearchParams({
-          next: location.href,
-        })
+  //   // 需要重新登录
+  //   case 'SHIRO_E5001':
+  //     // 微信生产环境下授权登录
+  //     if (isWeChat() && IS_PRODUCTION) {
+  //       axios.get(apis.common.wechat.authorizeUrl).then(({ result }) => {
+  //         location.replace(global.decodeURIComponent(result))
+  //       })
+  //     } else {
+  //       // 否则跳转到h5登录并带上跳转路由
+  //       const search = encodeSearchParams({
+  //         next: location.href,
+  //       })
 
-        location.replace(`/user/login?${search}`)
-      }
+  //       location.replace(`/user/login?${search}`)
+  //     }
 
-      // 不显示提示消息
-      data.description = ''
-      break
+  //     // 不显示提示消息
+  //     data.description = ''
+  //     break
 
-    default:
-  }
+  //   default:
+  // }
   // 若不是正确的返回code，且已经登录，就抛出错误
   const err = new Error(data.description)
 
