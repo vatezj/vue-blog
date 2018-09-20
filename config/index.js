@@ -42,18 +42,18 @@ module.exports = {
     prodEnv: require('./prod.env'),
     preEnv: require('./pre.env'),
     testEnv: require('./test.env'),
-    // index: path.resolve(__dirname, '../vswoft/resources/views/index/index.php'),
-
-    // // Paths
-    // assetsRoot: path.resolve(__dirname, '../vswoft/public/home'),
-    // assetsSubDirectory: 'static',
-    // assetsPublicPath: '/home/',
-    index: path.resolve(__dirname, '../dist/index.html'),
+    index: path.resolve(__dirname, '../vswoft/resources/views/index/index.php'),
 
     // Paths
-    assetsRoot: path.resolve(__dirname, '../dist'),
+    assetsRoot: path.resolve(__dirname, '../vswoft/public/home'),
     assetsSubDirectory: 'static',
-    assetsPublicPath: './',
+    assetsPublicPath: '/home/',
+    // index: path.resolve(__dirname, '../dist/index.html'),
+
+    // // Paths
+    // assetsRoot: path.resolve(__dirname, '../dist'),
+    // assetsSubDirectory: 'static',
+    // assetsPublicPath: './',
 
     /**
      * Source Maps
