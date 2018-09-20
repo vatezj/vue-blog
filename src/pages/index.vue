@@ -61,7 +61,7 @@ export default {
   },
   methods: {
     setNewsApi: function() {
-      api.get('http://localhost/api/posts/home', 'page=0').then(res => {
+      api.get('api/posts/home', 'page=0').then(res => {
         console.log(res)
         if (res.result) {
           if (res.result.length > 0) {
