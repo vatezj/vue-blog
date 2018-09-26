@@ -73,4 +73,21 @@ class PostsController
         $result = $res;
         return compact('result');
     }
+
+    /**
+     * Notes: vate
+     * User: Administrator
+     * Date: 2018/9/25
+     * Time: 16:55
+     * @RequestMapping(route="/api/posts/archive", method={RequestMethod::GET})
+     * @return array
+     */
+
+    public function archive():array
+    {
+        $posts = new Posts();
+        $res = $posts->getPostArchive();
+        $result = $res;
+        return compact('result');
+    }
 }

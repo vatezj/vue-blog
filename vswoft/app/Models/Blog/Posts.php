@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Models\Blog;
 
 use Swoft\Db\Model;
@@ -19,93 +20,93 @@ use Swoft\Db\Types;
 class Posts extends Model
 {
     /**
-     * @var int $id 
+     * @var int $id
      * @Id()
      * @Column(name="id", type="bigint")
      */
     private $id;
 
     /**
-     * @var int $userId 
+     * @var int $userId
      * @Column(name="user_id", type="bigint")
      * @Required()
      */
     private $userId;
 
     /**
-     * @var int $categoryId 
+     * @var int $categoryId
      * @Column(name="category_id", type="bigint")
      * @Required()
      */
     private $categoryId;
 
     /**
-     * @var string $title 
+     * @var string $title
      * @Column(name="title", type="string", length=255)
      * @Required()
      */
     private $title;
 
     /**
-     * @var string $description 
+     * @var string $description
      * @Column(name="description", type="string", length=255)
      * @Required()
      */
     private $description;
 
     /**
-     * @var string $slug 
+     * @var string $slug
      * @Column(name="slug", type="string", length=255)
      * @Required()
      */
     private $slug;
 
     /**
-     * @var string $content 
+     * @var string $content
      * @Column(name="content", type="text", length=4294967295)
      * @Required()
      */
     private $content;
 
     /**
-     * @var string $htmlContent 
+     * @var string $htmlContent
      * @Column(name="html_content", type="text", length=4294967295)
      * @Required()
      */
     private $htmlContent;
 
     /**
-     * @var int $status 
+     * @var int $status
      * @Column(name="status", type="tinyint", default=0)
      */
     private $status;
 
     /**
-     * @var int $viewCount 
+     * @var int $viewCount
      * @Column(name="view_count", type="integer", default=0)
      */
     private $viewCount;
 
     /**
-     * @var string $createdAt 
+     * @var string $createdAt
      * @Column(name="created_at", type="timestamp")
      */
     private $createdAt;
 
     /**
-     * @var string $updatedAt 
+     * @var string $updatedAt
      * @Column(name="updated_at", type="timestamp")
      */
     private $updatedAt;
 
     /**
-     * @var string $publishedAt 
+     * @var string $publishedAt
      * @Column(name="published_at", type="timestamp")
      */
     private $publishedAt;
 
     /**
-     * @var string $deletedAt 
+     * @var string $deletedAt
      * @Column(name="deleted_at", type="timestamp")
      */
     private $deletedAt;
@@ -377,22 +378,20 @@ class Posts extends Model
     }
 
 
-    public function getPostsLists($page,$num)
+    public function getPostsLists($page, $num)
     {
         $result = Query::table(Posts::class)
-            ->andWhere('status',1)
+            ->andWhere('status', 1)
             ->orderBy('id', QueryBuilder::ORDER_BY_DESC)
-            ->limit($num,$page*$num)
-            ->get(['title'=> 'title','published_at'=>'published_at','id'=>'id'])
+            ->limit($num, $page * $num)
+            ->get(['title' => 'title', 'published_at' => 'published_at', 'id' => 'id'])
             ->getResult();
-        if($result)
-        {
-            foreach ($result as $k=>$v)
-            {
-                $tags = Query::table(PostTag::class,'p')
-                        ->leftJoin(Tags::class,'t.id=p.tag_id','t')
-                        ->andWhere('p.post_id',$v['id'])
-                        ->get(['t.name'=>'name','t.id'=>'id'])->getResult();
+        if ($result) {
+            foreach ($result as $k => $v) {
+                $tags = Query::table(PostTag::class, 'p')
+                    ->leftJoin(Tags::class, 't.id=p.tag_id', 't')
+                    ->andWhere('p.post_id', $v['id'])
+                    ->get(['t.name' => 'name', 't.id' => 'id'])->getResult();
                 $result[$k]['tags'] = $tags;
             }
         }
@@ -408,6 +407,31 @@ class Posts extends Model
         echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++";
         var_dump($result);
         return $result;
+    }
+
+    public function getPostArchive()
+    {
+        $result = Posts::findAll(['status' => 1], ['orderby' => ['created_at' => 'DESC']])->getResult();
+        $res = [];
+        foreach ($result as $k => $v) {
+            $tmp_time = strtotime($v['createdAt']);
+//            $res[$k]['published_at'] = $v['published_at'];
+            $tmp_time = date('Y', $tmp_time);
+            $v['createdAt'] = date('m-d', strtotime($v['createdAt']));
+            $res[$tmp_time][$k] = $v;
+        }
+        $end = [];
+        foreach ($res as $k=>$v)
+        {
+            $end[$k]['archive'] = $k;
+            $end[$k]['posts'] = $v;
+        }
+
+//        echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++";
+//        var_dump($result);
+//        ksort($res);
+//        array_multisort($end['archive'], 'SORT_ASC', $end);
+        return $end;
     }
 
 

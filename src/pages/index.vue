@@ -18,8 +18,8 @@
             <span>/</span>
             <span v-for="tag in post.tags">
               <router-link :to="'/tags/'+tag.name">
-                  <a class="tag" href="javascript::void(0)" title="tag.tag_name">{{tag.name}}</a>
-               </router-link>
+                <a class="tag" href="javascript::void(0)" title="tag.tag_name">{{tag.name}}</a>
+              </router-link>
               <span>/</span>
             </span>
 
@@ -33,7 +33,7 @@
     </div>
     <ul class="pager">
 
-      <li class="next">
+      <li class="next" v-show="next">
         <router-link to="/page/1">Older Posts &rarr;</router-link>
       </li>
 
@@ -53,7 +53,8 @@ export default {
   data() {
     return {
       msg: 'Welcome to Your Vue.js App',
-      postLists: {}
+      postLists: {},
+      next:false,
     }
   },
   created() {
@@ -66,6 +67,10 @@ export default {
         if (res.result) {
           if (res.result.length > 0) {
             this.postLists = res.result
+            if(res.result.length == 10)
+            {
+                this.next = true
+            }
           }
         } else {
         }

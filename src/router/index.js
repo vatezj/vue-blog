@@ -22,22 +22,34 @@ export default new Router({
     {
       path: '/page/:id',
       name: 'page',
-      component: page
+      component: page,
+      // meta: {
+      //   keepAlive: true // 需要被缓存
+      // }
     },
     {
       path: '/tags',
       name: 'tags',
-      component: tags
+      component: tags,
+      meta: {
+        keepAlive: true // 需要被缓存
+      }
     },
     {
       path: '/tags/:name',
       name: 'tags',
-      component: tags
+      component: tags,
+      meta: {
+        keepAlive: true // 需要被缓存
+      }
     },
     {
       path: '/archive',
       name: 'archive',
-      component: archive
+      component: archive,
+      meta: {
+        keepAlive: true // 需要被缓存
+      }
     },
     {
       path: '/detail/:name',
