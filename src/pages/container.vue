@@ -1,14 +1,15 @@
 <template>
 
-<div>
+  <div>
     <!-- <div class="site-nav-toggle" id="site-nav-toggle"> -->
     <div class="mobile-menu" v-show="show">
-      <circle-menu type="left" :number='4' btn circle animate="animated rubberBand" :colors="[ 'rgb(220,220,220)', '#DCDCDC', '#DCDCDC', '#DCDCDC', '#DCDCDC']">
+      <circle-menus type="left" :number='4' btn circle animate="animated rubberBand" :colors="[ 'rgb(220,220,220)', '#DCDCDC', '#DCDCDC', '#DCDCDC', '#DCDCDC','#DCDCDC']">
         <router-link to="/" slot="item_1" class="iconfont icon-shouye1"></router-link>
         <router-link to="/tags" slot="item_2" class="iconfont icon-biaoqian1"></router-link>
         <router-link to="/archive" slot="item_3" class="iconfont icon-guidang2"></router-link>
         <router-link to="/about" slot="item_4" class="iconfont icon-guanyu2"></router-link>
-      </circle-menu>
+        <router-link to="/photo" slot="item_5" class="iconfonts icon-xiangce"></router-link>
+      </circle-menus>
     </div>
     <!-- </div> -->
 
@@ -48,6 +49,12 @@
                 <router-link to="/archive">
                   <i class="iconfont icon-guidang2"></i>
                   <span>存档</span>
+                </router-link>
+              </li>
+              <li :class="routeActive=='photo'?'active':''">
+                <router-link to="/photo">
+                  <i class="iconfont icon-guanyu2"></i>
+                  <span>相册</span>
                 </router-link>
               </li>
               <li :class="routeActive=='about'?'active':''">
@@ -138,37 +145,37 @@
         </li> -->
 
       </ul>
-        
-    <p>
+
+      <p>
         <span>/</span>
-        
+
         <span><a href="http://cioeo.com/">赤橙</a></span>
         <span>/</span>
-        
+
         <span><a href="http://www.sansi.ren/">仨思</a></span>
         <span>/</span>
-        
+
         <span><a href="https://www.lovchun.com">lovchun</a></span>
         <span>/</span>
-        
-    </p>
+
+      </p>
       <p>
         Created By
         <a href="https://www.vate.ren/">vate</a>
         <a href="http://www.miitbeian.gov.cn" target="_blank">粤ICP备16067937号-2</a>
       </p>
     </footer>
-</div>
+  </div>
 </template>
 
 <script>
 import animate from 'animate.css'
-import CircleMenu from 'vue-circle-menu'
+import CircleMenus from '@/components/VueCircleMenus/components/CircleMenu'
 import draggable from 'vuedraggable'
 
 export default {
   components: {
-    CircleMenu,
+    CircleMenus,
     draggable
   },
   name: 'App',
@@ -210,7 +217,7 @@ export default {
 <style>
 @import '../assets/css/aircloud.css'; /*引入公共样式*/
 @import '../assets/css/gitment.css'; /*引入公共样式*/
-@import '../assets/css/icon.css'; /*引入公共样式*/
+
 .oy-menu-group {
   position: relative;
   float: left;

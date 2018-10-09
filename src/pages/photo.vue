@@ -1,17 +1,26 @@
 <template>
 
   <div class="warp">
- <div class="index-about">
+    <div class="muent">
+      <circle-menus :type="type" :number='5' btn circle animate="animated rubberBand" :colors="[ 'rgb(220,220,220)', '#DCDCDC', '#DCDCDC', '#DCDCDC', '#DCDCDC','#DCDCDC']">
+        <router-link to="/" slot="item_1" class="iconfont icon-shouye1"></router-link>
+        <router-link to="/tags" slot="item_2" class="iconfont icon-biaoqian1"></router-link>
+        <router-link to="/archive" slot="item_3" class="iconfont icon-guidang2"></router-link>
+        <router-link to="/about" slot="item_4" class="iconfont icon-guanyu2"></router-link>
+        <router-link to="/photo" slot="item_5" class="iconfonts icon-xiangce"></router-link>
+      </circle-menus>
+    </div>
+    <div class="index-about">
       <i> sometimes code， sometimes play </i>
     </div>
-     <div class="index-about-mobile">
-          <i> sometimes code， sometimes play</i>
-        </div>
+    <div class="index-about-mobile">
+      <i> sometimes code， sometimes play</i>
+    </div>
     <!-- Main Content -->
     <vue-waterfall-easy :imgsArr="imgsArr" @scrollReachBottom="fetchImgsData" style="width:100%;" class="images" :preview="1">
       <template slot-scope="props">
-         <img :src="props.value.src" alt="" preview="1"/>
-    
+        <img :src="props.value.src" alt="" preview="1" />
+
       </template>
     </vue-waterfall-easy>
   </div>
@@ -21,14 +30,16 @@
 import preview from 'vue-photo-preview'
 import 'vue-photo-preview/dist/skin.css'
 import Vue from 'vue'
-
+import animate from 'animate.css'
+import CircleMenus from '@/components/VueCircleMenus/components/CircleMenu'
 Vue.use(preview)
 import vueWaterfallEasy from 'vue-waterfall-easy'
 
 export default {
   name: 'photo',
   components: {
-    vueWaterfallEasy
+    vueWaterfallEasy,
+    CircleMenus
   },
   props: {
     gap: {
@@ -36,8 +47,8 @@ export default {
       type: Number,
       default: 20
     },
-    preview:{
- type: Number,
+    preview: {
+      type: Number,
       default: 1
     },
     //    imgWidth: { // 指定图片的统一宽度
@@ -57,13 +68,30 @@ export default {
   data() {
     return {
       msg: 'Welcome to Your Vue.js App',
+      type:'right',
       postLists: {},
       next: false,
       imgsArr: [],
+      drag_style: {
+        width: '100px',
+        height: '100px',
+        background: 'aqua',
+        position: 'absolute',
+        right: '30px',
+        top: 0
+      },
       fetchImgsArr: [] //存放每次滚动时下一批要加载的图片的数组
     }
   },
   created() {
+    console.log(this.IsPC())
+    if(this.IsPC())
+    {
+      this.type = 'right'
+    }else
+    {
+      this.type = 'left'
+    }
     this.imgsArr = this.initImgsArr(0, 20) //初始化第一次（即页面加载完毕时）要加载的图片数据
     this.fetchImgsArr = this.initImgsArr(7, 16) // 模拟每次请求的下一批新的图片的数据数据
   },
@@ -105,6 +133,25 @@ export default {
     fetchImgsData() {
       //获取新的图片数据的方法，用于页面滚动满足条件时调用
       this.imgsArr = this.imgsArr.concat(this.fetchImgsArr) //数组拼接，把下一批要加载的图片放入所有图片的数组中
+    },
+    IsPC() {
+      var userAgentInfo = navigator.userAgent
+      var Agents = [
+        'Android',
+        'iPhone',
+        'SymbianOS',
+        'Windows Phone',
+        'iPad',
+        'iPod'
+      ]
+      var flag = true
+      for (var v = 0; v < Agents.length; v++) {
+        if (userAgentInfo.indexOf(Agents[v]) > 0) {
+          flag = false
+          break
+        }
+      }
+      return flag
     }
   }
 }
@@ -166,13 +213,35 @@ img {
 .vue-waterfall-easy-container .vue-waterfall-easy-scroll {
   overflow-y: auto !important;
 }
-.vue-waterfall-easy-container .vue-waterfall-easy .alink.img-wraper
-{
+.vue-waterfall-easy-container .vue-waterfall-easy .alink.img-wraper {
   display: none;
 }
 .index-about-mobile {
-
-    margin-bottom: 20px;
-    padding-top: 20px;
+  margin-bottom: 20px;
+  padding-top: 20px;
+}
+.oy-menu-group {
+  position: relative;
+  float: left;
+  transition: 0.2s;
+}
+.btn-list a {
+  color: #fff;
+}
+@media screen and (min-width: 680px) {
+  .muent {
+    position: fixed;
+    bottom: 500px;
+    right: 50px;
+    z-index: 1000;
+  }
+}
+@media screen and (max-width: 680px) {
+  .muent {
+    position: fixed;
+    bottom: 50px;
+    left: 20px;
+    z-index: 1000;
+  }
 }
 </style>
