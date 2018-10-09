@@ -1,29 +1,45 @@
 <template>
 
   <div class="warp">
-    <div class="index-about">
+ <div class="index-about">
       <i> sometimes code， sometimes play </i>
     </div>
+     <div class="index-about-mobile">
+          <i> sometimes code， sometimes play</i>
+        </div>
     <!-- Main Content -->
-    <vue-waterfall-easy :imgsArr="imgsArr" @scrollReachBottom="fetchImgsData" style="width:100%;" @click="clickFn" class="images" v-viewer="{movable: false}"></vue-waterfall-easy>
+    <vue-waterfall-easy :imgsArr="imgsArr" @scrollReachBottom="fetchImgsData" style="width:100%;" class="images" :preview="1">
+      <template slot-scope="props">
+         <img :src="props.value.src" alt="" preview="1"/>
+    
+      </template>
+    </vue-waterfall-easy>
   </div>
 </template>
 
 <script>
-import vueWaterfallEasy from 'vue-waterfall-easy'
-import Viewer from 'v-viewer'
+import preview from 'vue-photo-preview'
+import 'vue-photo-preview/dist/skin.css'
 import Vue from 'vue'
-Vue.use(Viewer)
+
+Vue.use(preview)
+import vueWaterfallEasy from 'vue-waterfall-easy'
+
 export default {
   name: 'photo',
   components: {
-    vueWaterfallEasy
+    vueWaterfallEasy,
+    Viewer
   },
   props: {
     gap: {
       // 图片间隔
       type: Number,
       default: 20
+    },
+    preview:{
+ type: Number,
+      default: 1
     },
     //    imgWidth: { // 指定图片的统一宽度
     //    type: Number,
@@ -53,6 +69,12 @@ export default {
     this.fetchImgsArr = this.initImgsArr(7, 16) // 模拟每次请求的下一批新的图片的数据数据
   },
   methods: {
+    inited(viewer) {
+      this.$viewer = viewer
+    },
+    show() {
+      this.$viewer.show()
+    },
     clickFn(event, { index, value }) {
       // 阻止a标签跳转
       event.preventDefault()
@@ -65,10 +87,9 @@ export default {
       //初始化图片数组的方法，把要加载的图片装入
       var arr = []
       for (var i = n; i < m; i++) {
-        var y = i;
-        if(i>=7)
-        {
-          y = i%7
+        var y = i
+        if (i >= 7) {
+          y = i % 7
         }
         arr.push({
           id: i,
@@ -118,7 +139,6 @@ html {
   width: 100%;
 }
 h1,
-
 a {
   color: #42b983;
 }
@@ -146,5 +166,14 @@ img {
 }
 .vue-waterfall-easy-container .vue-waterfall-easy-scroll {
   overflow-y: auto !important;
+}
+.vue-waterfall-easy-container .vue-waterfall-easy .alink.img-wraper
+{
+  display: none;
+}
+.index-about-mobile {
+
+    margin-bottom: 20px;
+    padding-top: 20px;
 }
 </style>
