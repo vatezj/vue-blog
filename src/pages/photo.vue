@@ -2,12 +2,12 @@
 
   <div class="warp">
     <div class="muent">
-      <circle-menus :type="type" :number='5' btn circle animate="animated rubberBand" :colors="[ 'rgb(220,220,220)', '#DCDCDC', '#DCDCDC', '#DCDCDC', '#DCDCDC','#DCDCDC']">
-        <router-link to="/" slot="item_1" class="iconfont icon-shouye1"></router-link>
-        <router-link to="/tags" slot="item_2" class="iconfont icon-biaoqian1"></router-link>
-        <router-link to="/archive" slot="item_3" class="iconfont icon-guidang2"></router-link>
-        <router-link to="/about" slot="item_4" class="iconfont icon-guanyu2"></router-link>
-        <router-link to="/photo" slot="item_5" class="iconfonts icon-xiangce"></router-link>
+      <circle-menus type="left" v-on:toggle="toggle" :number='5' :toggleAnimate.sync="toggleAnimate" :MaskToggle.sync="MaskToggle" :open.sync="open" btn circle animate="animated rubberBand" :colors="[ 'rgb(220,220,220)', '#DCDCDC', '#DCDCDC', '#DCDCDC', '#DCDCDC','#DCDCDC']">
+        <a href="javascript:void('0')" @click="runto($event)" data-to="/" slot="item_1" class="iconfont icon-shouye1"></a>
+        <a href="javascript:void('0')" @click="runto($event)" data-to="/tags" slot="item_2" class="iconfont icon-biaoqian1"></a>
+        <a href="javascript:void('0')" @click="runto($event)" data-to="/archive" slot="item_3" class="iconfont icon-guidang2"></a>
+        <a href="javascript:void('0')" @click="runto($event)" data-to="/about" slot="item_4" class="iconfont icon-guanyu2"></a>
+        <a href="javascript:void('0')" @click="runto($event)" data-to="/photo" slot="item_5" class="iconfonts icon-xiangce"></a>
       </circle-menus>
     </div>
     <div class="index-about">
@@ -70,6 +70,9 @@ export default {
       msg: 'Welcome to Your Vue.js App',
       type: 'right',
       loop: 0,
+      toggleAnimate: false,
+      MaskToggle: false,
+      open: false,
       initNum: 21,
       begNum: 10,
       pageNum: 8,
@@ -94,7 +97,7 @@ export default {
       this.begNum = 16
     } else {
       this.type = 'left'
-       this.begNum = 10
+      this.begNum = 10
     }
     this.imgsArr = this.initImgsArr(this.initNum, this.begNum) //初始化第一次（即页面加载完毕时）要加载的图片数据
     // this.fetchImgsArr = this.addImgsArr(this.pageNum) // 模拟每次请求的下一批新的图片的数据数据
@@ -102,6 +105,15 @@ export default {
   methods: {
     inited(viewer) {
       this.$viewer = viewer
+    },
+    toggle() {
+      this.open = !this.open
+      this.toggleAnimate = !this.toggleAnimate
+      this.MaskToggle = !this.MaskToggle
+    },
+    runto(event) {
+      this.open = false
+      this.$router.push(event.target.dataset.to)
     },
     show() {
       this.$viewer.show()
@@ -140,7 +152,10 @@ export default {
         if (nNum - i <= 0) {
           arr.push({
             id: nNum - i,
-            src: `http://ontzi4vtc.bkt.clouddn.com/image/vate/photo/${this.randomNum(this.initNum,1)}.jpg`,
+            src: `http://ontzi4vtc.bkt.clouddn.com/image/vate/photo/${this.randomNum(
+              this.initNum,
+              1
+            )}.jpg`,
             link: 'https:/',
             info: '一些图片描述文字'
           })
@@ -158,16 +173,15 @@ export default {
       console.log(arr)
       return arr
     },
-    randomNum(maxNum,minNum) {
-      return parseInt(Math.random()*(maxNum-minNum+1)+minNum);//生成一个从 m - n 之间的随机整数
+    randomNum(maxNum, minNum) {
+      return parseInt(Math.random() * (maxNum - minNum + 1) + minNum) //生成一个从 m - n 之间的随机整数
     },
     fetchImgsData() {
-     
       //获取新的图片数据的方法，用于页面滚动满足条件时调用
-      
-      this.imgsArr = this.imgsArr.concat(this.addImgsArr( this.pageNum )) //数组拼接，把下一批要加载的图片放入所有图片的数组中
-       this.loop += 1
-      console.log( this.loop )
+
+      this.imgsArr = this.imgsArr.concat(this.addImgsArr(this.pageNum)) //数组拼接，把下一批要加载的图片放入所有图片的数组中
+      this.loop += 1
+      console.log(this.loop)
     },
     IsPC() {
       var userAgentInfo = navigator.userAgent

@@ -3,12 +3,12 @@
   <div>
     <!-- <div class="site-nav-toggle" id="site-nav-toggle"> -->
     <div class="mobile-menu" v-show="show">
-      <circle-menus type="left" :number='5' btn circle animate="animated rubberBand" :colors="[ 'rgb(220,220,220)', '#DCDCDC', '#DCDCDC', '#DCDCDC', '#DCDCDC','#DCDCDC']">
-        <router-link to="/" slot="item_1" class="iconfont icon-shouye1"></router-link>
-        <router-link to="/tags" slot="item_2" class="iconfont icon-biaoqian1"></router-link>
-        <router-link to="/archive" slot="item_3" class="iconfont icon-guidang2"></router-link>
-        <router-link to="/about" slot="item_4" class="iconfont icon-guanyu2"></router-link>
-        <router-link to="/photo" slot="item_5" class="iconfonts icon-xiangce"></router-link>
+      <circle-menus type="left" v-on:toggle="toggle" :number='5' :toggleAnimate.sync="toggleAnimate" :MaskToggle.sync="MaskToggle"  :open.sync="open" btn circle animate="animated rubberBand" :colors="[ 'rgb(220,220,220)', '#DCDCDC', '#DCDCDC', '#DCDCDC', '#DCDCDC','#DCDCDC']">
+        <a href="javascript:void('0')" @click="runto($event)" data-to="/" slot="item_1" class="iconfont icon-shouye1"></a>
+        <a href="javascript:void('0')" @click="runto($event)" data-to="/tags" slot="item_2" class="iconfont icon-biaoqian1"></a>
+        <a href="javascript:void('0')" @click="runto($event)" data-to="/archive" slot="item_3" class="iconfont icon-guidang2"></a>
+        <a href="javascript:void('0')" @click="runto($event)" data-to="/about" slot="item_4" class="iconfont icon-guanyu2"></a>
+        <a href="javascript:void('0')" @click="runto($event)" data-to="/photo" slot="item_5" class="iconfonts icon-xiangce"></a>
       </circle-menus>
     </div>
     <!-- </div> -->
@@ -181,7 +181,10 @@ export default {
   name: 'App',
   data() {
     return {
+      toggleAnimate: false,
+      MaskToggle: false,
       tags: '',
+      open: false,
       show: true,
       routeActive: '/',
       val: '125',
@@ -210,7 +213,17 @@ export default {
     //   this.routeActive = 'index'
     // }
   },
-  methods: {}
+  methods: {
+    toggle() {
+      this.open = !this.open
+      this.toggleAnimate = !this.toggleAnimate
+      this.MaskToggle = !this.MaskToggle
+    },
+    runto(event) {
+      this.open = false
+      this.$router.push(event.target.dataset.to)
+    }
+  }
 }
 </script>
 
