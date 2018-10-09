@@ -92,7 +92,7 @@ export default {
   },
   mounted () {
     if (this.colors) {
-      if (this.colors.every(isColors) && this.colors.length === 6) {
+      // if (this.colors.every(isColors) && this.colors.length == 6) {
         for (let i = 0, length = this.colors.length; i < length; i++) {
           this.BtnColor = this.colors[0]
           this.Item1Color = this.colors[1]
@@ -101,9 +101,9 @@ export default {
           this.Item4Color = this.colors[4]
           this.Item5Color = this.colors[5]
         }
-      } else {
-        console.error('this Array of colors must be hexcolor or rgbcolor and Array length must be 5 ---VueCircleMenu')
-      }
+      // } else {
+      //   console.error('this Array of colors must be hexcolor or rgbcolor and Array length must be 5 ---VueCircleMenu')
+      // }
     } else {
       return
     }

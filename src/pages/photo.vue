@@ -2,7 +2,7 @@
 
   <div class="warp">
     <div class="muent">
-      <circle-menus :type="type" :number='5' btn circle animate="animated rubberBand" >
+      <circle-menus :type="type" :number='5' btn circle animate="animated rubberBand" :colors="[ 'rgb(220,220,220)', '#DCDCDC', '#DCDCDC', '#DCDCDC', '#DCDCDC','#DCDCDC']">
         <router-link to="/" slot="item_1" class="iconfont icon-shouye1"></router-link>
         <router-link to="/tags" slot="item_2" class="iconfont icon-biaoqian1"></router-link>
         <router-link to="/archive" slot="item_3" class="iconfont icon-guidang2"></router-link>
