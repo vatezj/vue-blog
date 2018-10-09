@@ -28,8 +28,7 @@ import vueWaterfallEasy from 'vue-waterfall-easy'
 export default {
   name: 'photo',
   components: {
-    vueWaterfallEasy,
-    Viewer
+    vueWaterfallEasy
   },
   props: {
     gap: {
