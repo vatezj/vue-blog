@@ -97,7 +97,7 @@ export default {
        this.begNum = 10
     }
     this.imgsArr = this.initImgsArr(this.initNum, this.begNum) //初始化第一次（即页面加载完毕时）要加载的图片数据
-    this.fetchImgsArr = this.addImgsArr(this.pageNum) // 模拟每次请求的下一批新的图片的数据数据
+    // this.fetchImgsArr = this.addImgsArr(this.pageNum) // 模拟每次请求的下一批新的图片的数据数据
   },
   methods: {
     inited(viewer) {
@@ -132,17 +132,19 @@ export default {
     },
     addImgsArr(n) {
       //初始化图片数组的方法，把要加载的图片装入
+      console.log(n)
       var arr = []
       var nNum = this.initNum - n * this.loop - this.begNum
-      for (var i = 0; i < 8; i++) {
+      // console.log(nNum)
+      for (var i = 0; i < n; i++) {
         if (nNum - i <= 0) {
           arr.push({
             id: nNum - i,
-            src: `http://ontzi4vtc.bkt.clouddn.com/image/vate/photo/${this.randomNum(1,this.initNum)}.jpg`,
+            src: `http://ontzi4vtc.bkt.clouddn.com/image/vate/photo/${this.randomNum(this.initNum,1)}.jpg`,
             link: 'https:/',
             info: '一些图片描述文字'
           })
-           console.log(this.randomNum(1,this.initNum))
+          //  console.log(this.randomNum(this.initNum,1))
         } else {
           arr.push({
             id: nNum - i,
@@ -153,25 +155,19 @@ export default {
           })
         }
       }
+      console.log(arr)
       return arr
     },
-    randomNum(minNum, maxNum) {
-      switch (arguments.length) {
-        case 1:
-          return parseInt(Math.random() * minNum + 1, 10)
-          break
-        case 2:
-          return parseInt(Math.random() * (maxNum - minNum + 1) + minNum, 10)
-          break
-        default:
-          return 0
-          break
-      }
+    randomNum(maxNum,minNum) {
+      return parseInt(Math.random()*(maxNum-minNum+1)+minNum);//生成一个从 m - n 之间的随机整数
     },
     fetchImgsData() {
-      this.loop += 1
+     
       //获取新的图片数据的方法，用于页面滚动满足条件时调用
-      this.imgsArr = this.imgsArr.concat(this.fetchImgsArr) //数组拼接，把下一批要加载的图片放入所有图片的数组中
+      
+      this.imgsArr = this.imgsArr.concat(this.addImgsArr( this.pageNum )) //数组拼接，把下一批要加载的图片放入所有图片的数组中
+       this.loop += 1
+      console.log( this.loop )
     },
     IsPC() {
       var userAgentInfo = navigator.userAgent
