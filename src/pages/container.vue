@@ -3,7 +3,7 @@
   <div>
     <!-- <div class="site-nav-toggle" id="site-nav-toggle"> -->
     <div class="mobile-menu" v-show="show">
-      <circle-menus type="left" :number='4' btn circle animate="animated rubberBand" :colors="[ 'rgb(220,220,220)', '#DCDCDC', '#DCDCDC', '#DCDCDC', '#DCDCDC','#DCDCDC']">
+      <circle-menus type="left" :number='4' btn circle animate="animated rubberBand" >
         <router-link to="/" slot="item_1" class="iconfont icon-shouye1"></router-link>
         <router-link to="/tags" slot="item_2" class="iconfont icon-biaoqian1"></router-link>
         <router-link to="/archive" slot="item_3" class="iconfont icon-guidang2"></router-link>
