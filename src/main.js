@@ -35,7 +35,21 @@ Vue.directive('drag',//自定义指令                                      JS
     }
   }
 );
-Vue.filter('getYMD', function(input) {
+
+router.afterEach((to, from, next) => {
+  setTimeout(() => {
+    var _hmt = _hmt || [];
+    (function () {
+      //每次执行前，先移除上次插入的代码
+      document.getElementById('baidu_tj') && document.getElementById('baidu_tj').remove();
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?801299d5547d13759c950d66e6153932";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  }, 0);
+});
+Vue.filter('getYMD', function (input) {
   return input.split(' ')[0];
 })
 
