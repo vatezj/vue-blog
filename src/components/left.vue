@@ -2,7 +2,7 @@
   <div class="index-left">
     <div class="avatar">
       <mu-avatar :size="size">
-        <img src="http://ontzi4vtc.bkt.clouddn.com/logo.png">
+        <img src="http://image.vate.ren/logo.jpg">
       </mu-avatar>
       <div>
         JvateHu

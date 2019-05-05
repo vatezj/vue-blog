@@ -5,10 +5,13 @@ services:
        image: swoft/swoft:latest
 #       build: ./
        ports:
-         - "80:80"
+         - "81:80"
        volumes:
          - ./:/var/www/swoft
        stdin_open: true 
        tty: true
        privileged: true
-       entrypoint: ["php", "/var/www/swoft/bin/swoft", "start"]
+       entrypoint: [
+
+            "php", "/var/www/swoft/bin/swoft", "start"
+       ]

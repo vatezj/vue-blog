@@ -46,7 +46,7 @@ module.exports = {
 
     // Paths
     assetsRoot: path.resolve(__dirname, '../vswoft/public/home'),
-    assetsSubDirectory: 'static',
+    assetsSubDirectory: 'home/static',
     assetsPublicPath: '/home/',
     // index: path.resolve(__dirname, '../dist/index.html'),
 

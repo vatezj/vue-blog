@@ -24,10 +24,10 @@
         <div class="nav" id="nav">
           <div class="avatar-name">
             <div class="avatar">
-              <img src="http://ontzi4vtc.bkt.clouddn.com/logo.png" />
+              <img src="http://image.vate.ren/logo.jpg" />
             </div>
             <div class="name">
-              <i>vate hu</i>
+              <i>胡木木</i>
             </div>
           </div>
           <div class="contents" id="nav-content">
@@ -51,12 +51,12 @@
                   <span>存档</span>
                 </router-link>
               </li>
-              <li :class="routeActive=='photo'?'active':''">
+              <!-- <li :class="routeActive=='photo'?'active':''">
                 <router-link to="/photo">
-                  <i class="iconfont icon-guanyu2"></i>
+                  <i class="iconfont icon-pictrue"></i>
                   <span>相册</span>
                 </router-link>
-              </li>
+              </li> -->
               <li :class="routeActive=='about'?'active':''">
                 <router-link to="/about">
                   <i class="iconfont icon-guanyu2"></i>
