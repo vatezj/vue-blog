@@ -51,7 +51,7 @@
         </div>
         <div class="ad">
           <div>关注回复编程，获取编程视频</div>
-          <img src="http://image.vate.ren/image/IVRrniIvggcZoDmheiKPRNP5ugAZMEc8AJ52cHvW.jpeg" alt="" srcset="" style="width:200px">
+          <img src="http://image.vate.ren/image/IVRrniIvggcZoDmheiKPRNP5ugAZMEc8AJ52cHvW.jpeg" alt="" srcset="">
         </div>
         <vueToTop type="12" size="30"></vueToTop>
     </div>
@@ -119,6 +119,38 @@ export default {
   right: 40px;
   top: 200px;
   font-size: 14px;
+}
+@media screen and (max-width: 300px) {
+    .ad {
+      img{
+        width: 40px;
+      }
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .ad {
+      img{
+        width: 40px;
+      }
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .ad {
+      img{
+        width: 80px;
+      }
+    }
+}
+
+
+@media screen and (min-width: 1000px) {
+    .ad {
+      img{
+        width: 200px;
+      }
+    }
 }
 </style>
   
