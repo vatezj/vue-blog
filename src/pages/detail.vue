@@ -119,6 +119,7 @@ export default {
   
   top: 200px;
   font-size: 14px;
+  text-align: center;
 }
 @media screen and (max-width: 300px) {
     .ad {
