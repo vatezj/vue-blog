@@ -116,12 +116,14 @@ export default {
 <style lang="less">
 .ad{
   position: fixed;
-  right: 40px;
+  
   top: 200px;
   font-size: 14px;
 }
 @media screen and (max-width: 300px) {
     .ad {
+      right: 0px;
+       font-size: 5px;
       img{
         width: 40px;
       }
@@ -130,6 +132,8 @@ export default {
 
 @media screen and (max-width: 500px) {
     .ad {
+       right: 0px;
+       font-size: 5px;
       img{
         width: 40px;
       }
@@ -138,6 +142,8 @@ export default {
 
 @media screen and (max-width: 1000px) {
     .ad {
+       right: 0px;
+       font-size: 5px;
       img{
         width: 80px;
       }
