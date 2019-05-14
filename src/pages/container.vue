@@ -148,29 +148,29 @@
 
       <p>
         <span>/</span>
-        <span><a href="http://www.taoquan.ink/">淘券</a></span>
+        <span><a href="http://www.taoquan.ink/" target="_blank">淘券</a></span>
         <span>/</span>
-        <span><a href="http://cioeo.com/">赤橙</a></span>
-        <span>/</span>
-
-        <span><a href="http://www.sansi.ren/">仨思</a></span>
+        <span><a href="http://cioeo.com/" target="_blank">赤橙</a></span>
         <span>/</span>
 
-        <span><a href="https://www.lovchun.com">lovchun</a></span>
+        <span><a href="http://www.sansi.ren/" target="_blank">仨思</a></span>
+        <span>/</span>
+
+        <span><a href="https://www.lovchun.com" target="_blank" >lovchun</a></span>
         <span>/</span>
 
       </p>
       <p>
         Created By
-        <a href="https://www.vate.ren/">胡木木</a>
+        <a href="https://www.vate.ren/" target="_blank">胡木木</a>
         Powered by 
-        <a href="https://www.swoft.org/">SWOFT</a>
+        <a href="https://www.swoft.org/" target="_blank">swoft</a>
          <span>/</span>
-        <a href="https://www.docker.com/">docker</a>
+        <a href="https://www.docker.com/" target="_blank">docker</a>
          <span>/</span>
-        <a href="http://nginx.org/">nginx</a>
+        <a href="http://nginx.org/" target="_blank">nginx</a>
          <span>/</span>
-        <a href="https://cn.vuejs.org/">vue</a>
+        <a href="https://cn.vuejs.org/" target="_blank">vue</a>
          <span>/</span>
         <a href="http://www.miitbeian.gov.cn" target="_blank">粤ICP备16067937号-2</a>
       </p>
