@@ -116,7 +116,6 @@ export default {
 <style lang="less">
 .ad{
   position: fixed;
-  
   top: 200px;
   font-size: 14px;
   text-align: center;
@@ -154,6 +153,7 @@ export default {
 
 @media screen and (min-width: 1000px) {
     .ad {
+      right: 10px;
       img{
         width: 200px;
       }
